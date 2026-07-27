@@ -177,7 +177,7 @@ class CarGameAI:
         reward = 0.1  # Reward +0.1 for surviving each frame
         game_over = False
 
-        if self._is_collision() or self.frame_iteration > 2000:
+        if self._is_collision():
             game_over = True
             reward = -10  # Heavy penalty for crashing
             return reward, game_over, self.score
