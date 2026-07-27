@@ -148,7 +148,7 @@ class CarGameAI:
     def reset(self):
         """Resets the environment for a new episode."""
         # Spawn the car at the starting point of the track
-        self.car = Car(150, 300)
+        self.car = Car(100, 300)
         self.car.angle = 90  # Face downwards to align with the track lane
         self.score = 0
         self.frame_iteration = 0
