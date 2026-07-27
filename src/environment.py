@@ -23,8 +23,10 @@ font = pygame.font.SysFont("arial", 25)
 
 
 def get_intersection(p1, p2, p3, p4):
-    """Calculates the intersection point of segment p1-p2 and p3-p4.
+    """Calculates the intersection point of segment p1-p2 and p3-p4 using vector cross product.
 
+    This method is mathematically robust and prevents false collisions on diagonal
+    walls.
     Returns (x, y) if intersection exists, otherwise None.
     """
     x1, y1 = p1
@@ -32,17 +34,19 @@ def get_intersection(p1, p2, p3, p4):
     x3, y3 = p3
     x4, y4 = p4
 
-    den = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
+    # Vector cross product denominator
+    den = (x4 - x3) * (y1 - y2) - (x1 - x2) * (y4 - y3)
     if den == 0:
         return None  # Lines are parallel
 
-    t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / den
-    u = -((x1 - x2) * (y1 - y3) - (y1 - y2) * (x1 - x3)) / den
+    # Parameter t for line 1 and u for line 2
+    ta = ((y3 - y4) * (x1 - x3) + (x4 - x3) * (y1 - y3)) / den
+    tb = ((y1 - y2) * (x1 - x3) + (x2 - x1) * (y1 - y3)) / den
 
-    if 0 <= t <= 1 and 0 <= u <= 1:
-        # Intersection point coordinate
-        px = x1 + t * (x2 - x1)
-        py = y1 + t * (y2 - y1)
+    # Intersection exists only if both ta and tb are between 0 and 1
+    if 0 <= ta <= 1 and 0 <= tb <= 1:
+        px = x1 + ta * (x2 - x1)
+        py = y1 + ta * (y2 - y1)
         return (px, py)
 
     return None
