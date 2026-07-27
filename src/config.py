@@ -1,0 +1,25 @@
+# Game Display Settings
+WINDOW_WIDTH = 1000  
+WINDOW_HEIGHT = 600  
+GAME_SPEED = 60  
+
+# Color definitions (RGB)
+COLOR_WHITE = (255, 255, 255)
+COLOR_BLACK = (0, 0, 0)
+COLOR_GRAY = (100, 100, 100) 
+COLOR_RED = (255, 0, 0)  
+COLOR_GREEN = (0, 255, 0)  
+COLOR_YELLOW = (255, 255, 0)  
+
+# Car Physics Settings
+CAR_WIDTH = 15  
+CAR_HEIGHT = 30  
+CAR_SPEED = 4  
+ROTATION_SPEED = 5  
+SENSOR_LENGTH = 150  
+
+# Reinforcement Learning (RL) Hyperparameters
+MAX_MEMORY = 100_000
+BATCH_SIZE = 1000
+LEARNING_RATE = 0.001
+GAMMA = 0.9
