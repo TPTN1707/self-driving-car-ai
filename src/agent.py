@@ -73,7 +73,7 @@ class Agent:
     def get_action(self, state):
         """Decides the next action based on epsilon-greedy policy."""
         # Exploration vs Exploitation tradeoff
-        self.epsilon = 80 - self.n_games
+        self.epsilon = max(80 - self.n_games, 10)
         final_move = [0, 0, 0]
 
         if random.randint(0, 200) < self.epsilon:
